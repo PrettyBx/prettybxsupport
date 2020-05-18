@@ -1,0 +1,26 @@
+{
+    "name": "prozorov/bxsupport",
+    "description": "Pretty Bitrix",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Prozorov",
+            "email": "artem.g.prozorov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/validation": "^7.6",
+        "illuminate/support": "^5.8",
+        "illuminate/container": "^5.8"
+    },
+    "autoload": {
+        "files": [
+            "container.php"
+        ],
+        "psr-4": {
+            "PrettyBx\\Support\\": "src/"
+        }
+    }
+}
