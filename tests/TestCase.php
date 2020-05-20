@@ -2,9 +2,9 @@
 
 namespace PrettyBx\Support\Tests;
 
-use Mockery\Adapter\Phpunit\MockeryTestCase as BaseTestCase;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class TestCase extends BaseTestCase
+class TestCase extends MockeryTestCase
 {
     
 }
