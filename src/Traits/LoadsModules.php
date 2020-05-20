@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrettyBx\Support\Traits;
 
 use Bitrix\Main\Loader;
@@ -16,7 +18,7 @@ trait LoadsModules
     {
         if (property_exists($this, 'modules') && is_array($this->modules)) {
             foreach ($this->modules as $module) {
-                Loader::includeModule($module);
+                container()->make(Loader::class)->includeModule($module);
             }
         }
     }
