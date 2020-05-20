@@ -6,7 +6,7 @@ namespace PrettyBx\Support\Providers;
 
 use PrettyBx\Support\Base\AbstractServiceProvider;
 
-class BitrixProvider extends AbstractServiceProvider
+class BitrixMainProvider extends AbstractServiceProvider
 {
     /**
      * @var array $singletons

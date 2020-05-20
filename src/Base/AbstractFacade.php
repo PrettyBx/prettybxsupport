@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PrettyBx\Support\Base;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
