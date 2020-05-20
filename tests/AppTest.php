@@ -2,7 +2,6 @@
 
 namespace PrettyBx\Support\Tests;
 
-use PrettyBx\Support\Tests\TestCase;
 use PrettyBx\Support\Base\AbstractServiceProvider;
 
 class AppTest extends TestCase
