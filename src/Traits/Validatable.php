@@ -4,15 +4,11 @@ namespace PrettyBx\Support\Traits;
 
 use Illuminate\Validation\Validator;
 use Illuminate\Translation\{ArrayLoader, Translator};
+use PrettyBx\Support\Dictionaries\DefaultValidationMessages as DefaultMessages;
 use InvalidArgumentException;
 
 trait Validatable
 {
-    protected $defaultMessages = [
-        'required' => 'Не указано поле :attribute',
-        'numeric' => 'Поле :attribute должно содержать числовое значение',
-    ];
-
     /**
      * Валидирует переданные данные
      *
@@ -21,23 +17,73 @@ trait Validatable
      * @param	array	$rules	Default: null
      * @return	void
      */
-    public function validate(array $data, array $rules = null, array $messages = null)
+    public function validate(array $data, array $rules = null, array $messages = null): void
     {
         $rules = $rules ?? (property_exists($this, 'rules') ? $this->rules : []);
 
-        $messages = $messages ?? (property_exists($this, 'messages') ? $this->messages : $this->defaultMessages);
-
-        $locale = property_exists($this, 'locale') ? $this->locale : 'en_US';
-
         $validator = new Validator(
-            new Translator(new ArrayLoader($locale, ''), $locale),
+            new Translator(new ArrayLoader($this->getValidationLocale(), ''), $this->getValidationLocale()),
             $data,
             $rules,
-            $messages
+            $this->getValidationMessages($messages)
         );
 
         if ($validator->fails()) {
             throw new InvalidArgumentException(implode(', ', $validator->errors()->all()));
         }
+    }
+
+    /**
+     * Валидирует отдельный атрибут
+     *
+     * @access	public
+     * @param	string	$attribute	
+     * @param	mixed 	$value    	
+     * @param	array 	$rules    	Default: null
+     * @return	void
+     */
+    public function validateAttribute(string $attribute, $value, array $rules = null): void
+    {
+        if (empty($rules)) {
+            if (property_exists($this, 'rules') && ! empty($this->rules[$attribute])) {
+                $rules = $this->rules[$attribute];
+            } else {
+                $rules = [$attribute => []];
+            }
+        }
+
+        $validator = new Validator(
+            new Translator(new ArrayLoader($this->getValidationLocale(), ''), $this->getValidationLocale()),
+            [$attribute => $value],
+            $rules,
+            $this->getValidationMessages($messages)
+        );
+
+        if ($validator->fails()) {
+            throw new InvalidArgumentException(implode(', ', $validator->errors()->all()));
+        }
+    }
+
+    /**
+     * getValidationLocale.
+     *
+     * @access	protected
+     * @return	string
+     */
+    protected function getValidationLocale(): string
+    {
+        return property_exists($this, 'locale') ? $this->locale : 'en_US';
+    }
+
+    /**
+     * getValidationMessages.
+     *
+     * @access	protected
+     * @param	array	$messages	
+     * @return	array
+     */
+    protected function getValidationMessages(array $messages = null): array
+    {
+        return $messages ?? (property_exists($this, 'messages') ? $this->messages : DefaultMessages::getItems());
     }
 }
