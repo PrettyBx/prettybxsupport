@@ -46,7 +46,7 @@ trait Validatable
     {
         if (empty($rules)) {
             if (property_exists($this, 'rules') && ! empty($this->rules[$attribute])) {
-                $rules = $this->rules[$attribute];
+                $rules = [$attribute => $this->rules[$attribute]];
             } else {
                 $rules = [$attribute => []];
             }
