@@ -45,7 +45,7 @@ trait LoadsModules
      */
     protected function loadModule(string $moduleId): void
     {
-        if (! container()->make('\Bitrix\Main\Loader')->includeModule($moduleId)) {
+        if (!container()->make('\Bitrix\Main\Loader')->includeModule($moduleId)) {
             throw new \RuntimeException('Module ' . $moduleId . ' could not be loaded');
         }
     }
