@@ -17,7 +17,7 @@ abstract class AbstractDictionary
      */
     public static function getItem(string $code): string
     {
-        if (! array_key_exists($code, static::getItems())) {
+        if (!array_key_exists($code, static::getItems())) {
             throw new \InvalidArgumentException('Запрошенный элемент ' . $code . ' отсутствует в словаре ' . __CLASS__);
         }
 
