@@ -56,7 +56,7 @@ trait Validatable
             new Translator(new ArrayLoader($this->getValidationLocale(), ''), $this->getValidationLocale()),
             [$attribute => $value],
             $rules,
-            $this->getValidationMessages($messages)
+            $this->getValidationMessages()
         );
 
         if ($validator->fails()) {
