@@ -6,13 +6,13 @@ namespace PrettyBx\Support\Facades;
 
 use PrettyBx\Support\Base\AbstractFacade;
 
-class User extends AbstractFacade
+class CMain extends AbstractFacade
 {
     /**
      * @inheritDoc
      */
     protected static function getFacadeAccessor()
     {
-        return 'CUser';
+        return 'CMain';
     }
 }

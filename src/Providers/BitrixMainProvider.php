@@ -12,7 +12,8 @@ class BitrixMainProvider extends AbstractServiceProvider
      * @var array $singletons
      */
     protected $singletons = [
-        \Bitrix\Main\Loader::class,
+        '\Bitrix\Main\Loader',
+        '\Bitrix\Main\Application',
     ];
 
     /**
