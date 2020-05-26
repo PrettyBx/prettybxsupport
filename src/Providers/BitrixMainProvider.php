@@ -13,7 +13,6 @@ class BitrixMainProvider extends AbstractServiceProvider
      */
     protected $singletons = [
         '\Bitrix\Main\Loader',
-        '\Bitrix\Main\Application',
     ];
 
     /**
@@ -48,6 +47,10 @@ class BitrixMainProvider extends AbstractServiceProvider
             }
 
             return $GLOBALS['USER'];
+        });
+
+        container()->singleton('\Bitrix\Main\Application', function () {
+            return \Bitrix\Main\Application::getInstance();
         });
     }
 }
