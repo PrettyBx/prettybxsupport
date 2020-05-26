@@ -14,4 +14,39 @@ class BitrixMainProvider extends AbstractServiceProvider
     protected $singletons = [
         \Bitrix\Main\Loader::class,
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public function register(): void
+    {
+        parent::register();
+
+        $this->initGlobalObjects();
+    }
+
+    /**
+     * Initializes global variables
+     *
+     * @access	protected
+     * @return	void
+     */
+    protected function initGlobalObjects(): void
+    {
+        container()->singleton('CMain', function () {
+            if (empty($GLOBALS['APPLICATION'])) {
+                throw new \RuntimeException('Bitrix is not initialized');
+            }
+
+            return $GLOBALS['APPLICATION'];
+        });
+
+        container()->singleton('CUser', function () {
+            if (empty($GLOBALS['USER'])) {
+                throw new \RuntimeException('Bitrix is not initialized');
+            }
+
+            return $GLOBALS['USER'];
+        });
+    }
 }
