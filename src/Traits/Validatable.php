@@ -45,7 +45,7 @@ trait Validatable
     public function validateAttribute(string $attribute, $value, array $rules = null): void
     {
         if (empty($rules)) {
-            if (property_exists($this, 'rules') && ! empty($this->rules[$attribute])) {
+            if (property_exists($this, 'rules') && !empty($this->rules[$attribute])) {
                 $rules = [$attribute => $this->rules[$attribute]];
             } else {
                 $rules = [$attribute => []];
