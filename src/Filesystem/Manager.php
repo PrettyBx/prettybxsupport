@@ -84,4 +84,18 @@ class Manager
     {
         return rename($oldname, $newname, $context);
     }
+
+    /**
+     * touch wrapper
+     *
+     * @access	public
+     * @param	string	$filename	
+     * @param	int   	$time    	Default: null
+     * @param	int   	$atime   	Default: null
+     * @return	bool
+     */
+    public function touch(string $filename, int $time = null, int $atime = null): bool
+    {
+        return touch($filename, $time, $atime);
+    }
 }
