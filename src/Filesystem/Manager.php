@@ -15,12 +15,11 @@ class Manager
      *
      * @access	public
      * @param	string	$filename	
-     * @param	mixed 	$data    	
      * @return	mixed
      */
-    public function getContents(string $filename, $data)
+    public function getContents(string $filename)
     {
-        return file_get_contents($filename, $data);
+        return file_get_contents($filename);
     }
 
     /**
