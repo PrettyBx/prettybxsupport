@@ -91,6 +91,10 @@ class Manager
             $time = time();
         }
 
+        if (empty($atime)) {
+            $atime = time();
+        }
+
         return touch($filename, $time, $atime);
     }
 }
