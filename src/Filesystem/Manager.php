@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace PrettyBx\Support\Filesystem;
 
+use Illuminate\Support\Traits\Macroable;
+
 class Manager
 {
+    use Macroable;
+
     /**
      * file_get_contents wrapper
      *
