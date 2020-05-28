@@ -96,4 +96,15 @@ class Manager
 
         return touch($filename, $time, $atime);
     }
+
+    /**
+     * getTempDir.
+     *
+     * @access	public
+     * @return	string
+     */
+    public function getTempDir(): string
+    {
+        return sys_get_temp_dir();
+    }
 }
