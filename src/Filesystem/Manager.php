@@ -87,6 +87,10 @@ class Manager
      */
     public function touch(string $filename, int $time = null, int $atime = null): bool
     {
+        if (empty($time)) {
+            $time = time();
+        }
+
         return touch($filename, $time, $atime);
     }
 }
