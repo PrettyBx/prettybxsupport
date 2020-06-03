@@ -9,11 +9,6 @@
             "email": "artem.g.prozorov@gmail.com"
         }
     ],
-    "config": {
-        "platform": {
-            "php": "^7.2"
-        }
-    },
     "minimum-stability": "stable",
     "require": {
         "illuminate/validation": ">=5.8",
