@@ -25,7 +25,7 @@ class Manager implements ConfigurationContract
 
         $keyPath = explode('.', $key);
 
-        $root = $this->getBxConfig()->get($keyPath[0]);
+        $root = $this->getBxConfig()->get(array_shift($keyPath));
 
         if (empty($root) || ! is_array($root)) {
             return '';
@@ -39,6 +39,8 @@ class Manager implements ConfigurationContract
 
             $current = $current[$val];
         }
+
+        return $current;
     }
 
     /**
@@ -47,7 +49,7 @@ class Manager implements ConfigurationContract
      * @access	protected
      * @return	Configuration
      */
-    protected function getBxConfig(): Configuration
+    protected function getBxConfig()
     {
         if (empty($this->bxConfig)) {
             $this->bxConfig = Configuration::getInstance();
