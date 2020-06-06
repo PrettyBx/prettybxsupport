@@ -7,8 +7,8 @@ if (!function_exists('container')) {
     }
 }
 
-if (!  function_exists('config')) {
-    function config(string $key)
+if (!  function_exists('configuration')) {
+    function configuration(string $key)
     {
         return container(\PrettyBx\Support\Contracts\ConfigurationContract::class)->get($key);
     }
