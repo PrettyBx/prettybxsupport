@@ -59,7 +59,7 @@ class ConfigManagerTest extends TestCase
                     ],
                 ];
 
-                return $config[$key];
+                return $config[$key] ?? null;
             }
         };
     }
