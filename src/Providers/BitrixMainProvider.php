@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace PrettyBx\Support\Providers;
 
 use PrettyBx\Support\Base\AbstractServiceProvider;
+use PrettyBx\Support\Contracts\ConfigurationContract;
+use PrettyBx\Support\Config\Manager as ConfigManager;
 
 class BitrixMainProvider extends AbstractServiceProvider
 {
@@ -13,6 +15,7 @@ class BitrixMainProvider extends AbstractServiceProvider
      */
     protected $singletons = [
         '\Bitrix\Main\Loader',
+        ConfigurationContract::class => ConfigManager::class,
     ];
 
     /**
