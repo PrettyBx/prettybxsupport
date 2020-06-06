@@ -20,10 +20,3 @@ if (! function_exists('fixture')) {
         return array_merge($fixture, $additional);
     }
 }
-
-if (!  function_exists('config')) {
-    function config(string $key)
-    {
-        return container(\PrettyBx\Support\Contracts\ConfigurationContract::class)->get($key);
-    }
-}
