@@ -189,4 +189,5 @@ Manager::macro('append', function ($filename, $data) {
 \PrettyBx\Support\Facades\FileManager::append($this->getFullPath(), $data);
 ```
 
-
+## Другие библиотеки в рамках проекта "Pretty Bitrix"
+- Удобные фикстуры для юнит тестов: https://github.com/artem-prozorov/prettybxfixtures
