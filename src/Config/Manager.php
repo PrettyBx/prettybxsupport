@@ -17,7 +17,28 @@ class Manager implements ConfigurationContract
      */
     public function get(string $key)
     {
-        return $this->getBxConfig()->get($key);
+        $value = $this->getBxConfig()->get($key);
+        
+        if (! empty($value)) {
+            return $value;
+        }
+
+        $keyPath = explode('.', $key);
+
+        $root = $this->getBxConfig()->get($keyPath[0]);
+
+        if (empty($root) || ! is_array($root)) {
+            return '';
+        }
+
+        $current = $root;
+        foreach ($keyPath as $key => $val) {
+            if (empty($current[$val])) {
+                return '';
+            }
+
+            $current = $current[$val];
+        }
     }
 
     /**
