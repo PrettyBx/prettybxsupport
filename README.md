@@ -178,6 +178,11 @@ class EventServiceProvider extends AbstractEventServiceProvider
     ];
 }
 ```
+После этого зарегистрируйте этот класс в `php_interface/init.php`:
+```
+(new EventServiceProvider())->register();
+```
+При регистрации EventServiceProvider подпишет указанные обработчики на указанные события.
 
 ## Работа с файловой системой
 Для удобства работы с файлами есть класс `PrettyBx\Support\Filesystem\Manager`, который представляет из себя набор команд для выполнения файловых операций. Рекомендуется зарегистрировать этот класс как синглтон с помощью сервис провайдера:
