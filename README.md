@@ -148,6 +148,37 @@ class Service
 В случае, если валидация данных провалится, будет выброшено исключение `\InvalidArgumentException`
 Список всех доступных правил валидации можно смотреть здесь https://laravel.com/docs/5.8/validation
 
+## Работа с событиями
+Всю работу с событиями предлагается вынести в один класс - EventServiceProvider. Для того, чтобы зарегистрировать свои обработчики событий, создайте класс, наследующийся от `PrettyBx\Support\Providers\AbstractEventServiceProvider`. Укажите события, которые нужно обработать, в массиве в защищенном свойстве `events`. 
+Пример:
+```
+use PrettyBx\Support\Providers\AbstractEventServiceProvider;
+
+class EventServiceProvider extends AbstractEventServiceProvider
+{
+    protected array $events = [
+        [
+            'module' => 'iblock', 
+            'event' => 'OnAfterIBlockElementAdd',
+            'handler' => [\App\EventListeners\IblockEventListener::class, 'afterAdd'],
+            'sort' => 100,
+        ],
+        [
+            'module' => 'iblock', 
+            'event' => 'OnAfterIBlockElementUpdate',
+            'handler' => [\App\EventListeners\IblockEventListener::class, 'afterUpdate'],
+            'sort' => 100,
+        ],
+        [
+            'module' => 'iblock', 
+            'event' => 'OnBeforeIBlockElementDelete',
+            'handler' => 'function_name_here',
+            'sort' => 100,
+        ],
+    ];
+}
+```
+
 ## Работа с файловой системой
 Для удобства работы с файлами есть класс `PrettyBx\Support\Filesystem\Manager`, который представляет из себя набор команд для выполнения файловых операций. Рекомендуется зарегистрировать этот класс как синглтон с помощью сервис провайдера:
 ```
