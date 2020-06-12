@@ -18,7 +18,7 @@ class Manager implements ConfigurationContract
     public function get(string $key)
     {
         $value = $this->getBxConfig()->get($key);
-        
+
         if (! empty($value)) {
             return $value;
         }
