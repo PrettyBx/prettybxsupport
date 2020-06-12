@@ -36,7 +36,7 @@ abstract class AbstractEventServiceProvider implements ServiceProviderContract
         $manager = container()->make('\Bitrix\Main\EventManager');
 
         foreach ($this->events as $event) {
-            $manager->addEventHandler($event['module'], $event['event'], $event['handler'], $event['sort']);
+            $manager->addEventHandler($event['module'], $event['event'], $event['handler'], false, $event['sort']);
         }
     }
 }
