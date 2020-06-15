@@ -55,5 +55,9 @@ class BitrixMainProvider extends AbstractServiceProvider
         container()->singleton('\Bitrix\Main\Application', function () {
             return \Bitrix\Main\Application::getInstance();
         });
+
+        container()->singleton('\Bitrix\Main\EventManager', function () {
+            return \Bitrix\Main\EventManager::getInstance();
+        });
     }
 }
