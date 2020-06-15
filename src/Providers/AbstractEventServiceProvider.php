@@ -13,7 +13,7 @@ abstract class AbstractEventServiceProvider implements ServiceProviderContract
     /**
      * @var array $events
      */
-    protected array $events = [];
+    protected $events = [];
 
     /**
      * @inheritDoc

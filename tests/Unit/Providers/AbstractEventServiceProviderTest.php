@@ -10,7 +10,7 @@ class AbstractEventServiceProviderTest extends TestCase
     public function testEventBindings()
     {
         $provider = new class extends AbstractEventServiceProvider {
-            protected array $events = [
+            protected $events = [
                 [
                     'module' => 'tasks', 
                     'event' => 'OnTaskUpdate',
