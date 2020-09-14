@@ -76,10 +76,15 @@ $contants = $APPLICATION->GetFileContent("/foo/bar.baz");
 $contants = \PrettyBx\Support\Facades\CMain::GetFileContent("/foo/bar.baz");
 ```
 
-### $GLOBALS['APPLICATION']
-Получить экземпляр класса \CUser можно с помощью фасада `PrettyBx\Support\Facades\CUser`
+### $GLOBALS['USER']
+Получить экземпляр класса \CUser можно с помощью фасада `PrettyBx\Support\Facades\CUser`. Пример получения текущего идентификатора пользователя:
 ```
 $userId = \PrettyBx\Support\Facades\CUser::getId();
+```
+
+Пример авторизации:
+```
+\PrettyBx\Support\Facades\CUser::login($login, $password);
 ```
 
 ### \Bitrix\Main\Application
