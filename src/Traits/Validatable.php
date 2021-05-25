@@ -12,12 +12,16 @@ trait Validatable
     /**
      * Валидирует переданные данные
      *
-     * @access	public
-     * @param	array	$data 	
-     * @param	array	$rules	Default: null
-     * @return	void
+     * @access    public
+     *
+     * @param array      $data
+     * @param array      $rules Default: null
+     * @param array|null $messages
+     * @param bool       $toJson
+     *
+     * @return    void
      */
-    public function validate(array $data, array $rules = null, array $messages = null): void
+    public function validate(array $data, array $rules = null, array $messages = null, bool $toJson = false): void
     {
         $rules = $rules ?? (property_exists($this, 'rules') ? $this->rules : []);
 
@@ -29,7 +33,8 @@ trait Validatable
         );
 
         if ($validator->fails()) {
-            throw new InvalidArgumentException(implode(', ', $validator->errors()->all()));
+            $message = $toJson ? $validator->errors()->toJson(256) : implode(', ', $validator->errors()->all());
+            throw new InvalidArgumentException($message);
         }
     }
 
