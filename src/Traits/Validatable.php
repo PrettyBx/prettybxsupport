@@ -12,17 +12,18 @@ trait Validatable
     /**
      * Валидирует переданные данные
      *
-     * @access	public
-     * @param	array	$data 	
-     * @param	array	$rules	Default: null
-     * @return	void
+     * @access    public
+     * @param array $data
+     * @param array|null $rules Default: null
+     * @param array|null $messages
+     * @return    void
      */
     public function validate(array $data, array $rules = null, array $messages = null): void
     {
         $rules = $rules ?? (property_exists($this, 'rules') ? $this->rules : []);
 
         $validator = new Validator(
-            new Translator(new ArrayLoader($this->getValidationLocale(), ''), $this->getValidationLocale()),
+            new Translator(new ArrayLoader(), $this->getValidationLocale()),
             $data,
             $rules,
             $this->getValidationMessages($messages)
@@ -36,11 +37,11 @@ trait Validatable
     /**
      * Валидирует отдельный атрибут
      *
-     * @access	public
-     * @param	string	$attribute	
-     * @param	mixed 	$value    	
-     * @param	array 	$rules    	Default: null
-     * @return	void
+     * @access    public
+     * @param string $attribute
+     * @param mixed $value
+     * @param array|null $rules Default: null
+     * @return    void
      */
     public function validateAttribute(string $attribute, $value, array $rules = null): void
     {
@@ -53,7 +54,7 @@ trait Validatable
         }
 
         $validator = new Validator(
-            new Translator(new ArrayLoader($this->getValidationLocale(), ''), $this->getValidationLocale()),
+            new Translator(new ArrayLoader(), $this->getValidationLocale()),
             [$attribute => $value],
             $rules,
             $this->getValidationMessages()
@@ -78,9 +79,9 @@ trait Validatable
     /**
      * getValidationMessages.
      *
-     * @access	protected
-     * @param	array	$messages	
-     * @return	array
+     * @access    protected
+     * @param array|null $messages
+     * @return    array
      */
     protected function getValidationMessages(array $messages = null): array
     {
